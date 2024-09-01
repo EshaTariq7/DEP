@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blogs</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>All Blogs</h1>
+            <a href="/blogs/new" class="btn btn-primary">Create New Blog</a>
+        </header>
+
+        <ul class="blog-list">
+            <% blogs.forEach(function(blog){ %>
+                <li class="blog-item">
+                    <div class="blog-content">
+                        <h2><a href="/blogs/<%= blog._id %>"><%= blog.title %></a></h2>
+                        <img src="<%= blog.image %>" alt="<%= blog.title %>">
+                        <p><%= blog.body.substring(0, 100) %>...</p>
+                    </div>
+                    <div class="blog-actions">
+                        <a href="/blogs/<%= blog._id %>/edit" class="btn btn-secondary">Edit</a>
+                        <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</body>
+</html>
